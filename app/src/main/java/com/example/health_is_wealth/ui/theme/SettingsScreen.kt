@@ -1,3 +1,4 @@
+// SettingsScreen.kt
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -7,11 +8,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun SettingsScreen() {
     var notificationsEnabled by remember { mutableStateOf(true) }
@@ -21,8 +20,7 @@ fun SettingsScreen() {
 
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(24.dp)
-    ) {
+        .padding(24.dp)) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -60,4 +58,10 @@ fun DropdownMenuBox(options: List<String>, selectedOption: String, onSelect: (St
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SettingsScreenPreview() {
+    SettingsScreen()
 }
