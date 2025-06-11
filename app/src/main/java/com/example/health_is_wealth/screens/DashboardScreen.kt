@@ -1,5 +1,5 @@
 // DashboardScreen.kt
-package com.example.health_is_wealth.ui.theme
+package com.example.health_is_wealth.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
