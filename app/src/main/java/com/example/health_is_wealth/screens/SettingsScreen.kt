@@ -1,4 +1,5 @@
 // SettingsScreen.kt
+package com.example.health_is_wealth.screens
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,13 +13,13 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(modifier: Modifier = Modifier) {
     var notificationsEnabled by remember { mutableStateOf(true) }
     var selectedTheme by remember { mutableStateOf("Light") }
 
     val themeOptions = listOf("Light", "Dark", "System")
 
-    Column(modifier = Modifier
+    Column(modifier = modifier
         .fillMaxSize()
         .padding(24.dp)) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
