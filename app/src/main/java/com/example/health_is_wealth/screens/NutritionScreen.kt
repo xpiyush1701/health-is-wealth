@@ -1,4 +1,4 @@
-// src/main/java/com/example/health_is_wealth/screens/JournalScreen.kt
+// src/main/java/com/example/health_is_wealth/screens/NutritionScreen.kt
 
 package com.example.health_is_wealth.screens
 
@@ -11,48 +11,59 @@ import androidx.navigation.NavController
 import com.example.health_is_wealth.WellnessViewModel
 
 /**
- * DailyJournal UI.
- * - Captures mood and note.
- * - Stores entries in ViewModel.
- * - Navigates back after save or via back button.
+ * NutritionLogger UI.
+ * - Inputs for calories, protein, and water.
+ * - Persists data in ViewModel on save.
+ * - Return to home on save or back.
  */
 @Composable
-fun JournalScreen(
+fun NutritionScreen(
     navController: NavController,
     vm: WellnessViewModel
 ) {
-    var moodInput by remember { mutableStateOf(vm.journalMood.value) }
-    var noteInput by remember { mutableStateOf(vm.journalNote.value) }
+    var caloriesInput by remember { mutableStateOf(vm.calories.value) }
+    var proteinInput  by remember { mutableStateOf(vm.protein.value) }
+    var waterInput    by remember { mutableStateOf(vm.water.value) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(text = "Daily Journal")
+        Text(text = "Log Nutrition")
 
         OutlinedTextField(
-            value = moodInput,
-            onValueChange = { moodInput = it },
+            value = caloriesInput,
+            onValueChange = { caloriesInput = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Mood (emoji)") }
+            label = { Text("Calories") }
         )
 
         OutlinedTextField(
-            value = noteInput,
-            onValueChange = { noteInput = it },
+            value = proteinInput,
+            onValueChange = { proteinInput = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            label = { Text("Note") }
+            label = { Text("Protein (g)") }
+        )
+
+        OutlinedTextField(
+            value = waterInput,
+            onValueChange = { waterInput = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+            label = { Text("Water (L)") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = {
-                vm.journalMood.value = moodInput
-                vm.journalNote.value = noteInput
+                vm.calories.value = caloriesInput
+                vm.protein.value  = proteinInput
+                vm.water.value    = waterInput
                 navController.popBackStack()
             },
             modifier = Modifier.fillMaxWidth()

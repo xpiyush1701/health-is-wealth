@@ -1,4 +1,4 @@
-// src/main/java/com/example/health_is_wealth/screens/JournalScreen.kt
+// src/main/java/com/example/health_is_wealth/screens/SleepScreen.kt
 
 package com.example.health_is_wealth.screens
 
@@ -11,48 +11,48 @@ import androidx.navigation.NavController
 import com.example.health_is_wealth.WellnessViewModel
 
 /**
- * DailyJournal UI.
- * - Captures mood and note.
- * - Stores entries in ViewModel.
- * - Navigates back after save or via back button.
+ * SleepTracker UI.
+ * - Displays fields for hours and mood.
+ * - Saves inputs into ViewModel.
+ * - Navigates back to home on save or back.
  */
 @Composable
-fun JournalScreen(
+fun SleepScreen(
     navController: NavController,
     vm: WellnessViewModel
 ) {
-    var moodInput by remember { mutableStateOf(vm.journalMood.value) }
-    var noteInput by remember { mutableStateOf(vm.journalNote.value) }
+    var hoursInput by remember { mutableStateOf(vm.hours.value) }
+    var moodInput  by remember { mutableStateOf(vm.sleepMood.value) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(text = "Daily Journal")
+        Text(text = "Sleep Tracker")
+
+        OutlinedTextField(
+            value = hoursInput,
+            onValueChange = { hoursInput = it },
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Hours slept") }
+        )
 
         OutlinedTextField(
             value = moodInput,
             onValueChange = { moodInput = it },
-            modifier = Modifier.fillMaxWidth(),
-            label = { Text("Mood (emoji)") }
-        )
-
-        OutlinedTextField(
-            value = noteInput,
-            onValueChange = { noteInput = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            label = { Text("Note") }
+            label = { Text("Mood (emoji)") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = {
-                vm.journalMood.value = moodInput
-                vm.journalNote.value = noteInput
+                vm.hours.value = hoursInput
+                vm.sleepMood.value = moodInput
                 navController.popBackStack()
             },
             modifier = Modifier.fillMaxWidth()
